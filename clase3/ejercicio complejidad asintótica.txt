@@ -1,0 +1,82 @@
+1-	Calcular complejidad asintótica
+
+public static void main(String[] args) {
+        int matriz1[][] = {{2,3,4},{3,5,2},{7,2,4}};
+        int vector1[] = {3,5,2};
+        System.out.println(verificarCoincidencia(matriz1, vector1, 3, 3)); // verdadero
+
+        int matriz2[][] = {{2,3,4},{3,5,2},{7,2,4}};
+        int vector2[] = {3,5,1};
+        System.out.println(verificarCoincidencia(matriz2, vector2, 3, 3)); // falso
+    }
+
+    // Función principal: controla filas y columnas
+    public static boolean verificarCoincidencia(int[][] matriz, int[] vector, int filas, int columnas) {
+        for (int i = 0; i < filas; i++) {
+            if (!verificarFila(matriz, vector, i, columnas)) {
+                return false;
+            }
+        }
+        return true;
+    } // t(n) = 3 + n + n + n * (3n^2+5n+3) = 3 + 2n + 3n^3 + 5n^2 + 3n = 3n^3 + 5n^2 + 5n + 3
+    // demostración matemática, termino dominante mas 1
+    // 3n^3 + 5n^2 + 5n + 3 <= 4n^3
+    // 3n^3/n^3 + 5n^2/n^3 + 5n/n^3 + 3/n^3 <= 4n^3/n^3
+    // 3 + 5/n + 5n/n^2+ 3/n^3 <= 4n^3/n^3
+    // conclusión t(n) pertenece a O(n^3) para c = 4 y desde n0 >= 6
+
+
+    // Verifica una fila completa
+    private static boolean verificarFila(int[][] matriz, int[] vector, int fila, int columnas) {
+        for (int j = 0; j < columnas; j++) {
+            if (!compararCeldaVariasVeces(matriz[fila][j], vector[j], columnas)) {
+                return false;
+            }
+        }
+        return true;
+    } // w(n) = 3 + n + n + n * r(n) = 3 + n + n + n * r(n) = 3 + n + n + n * (3n+3) = 3n^2+5n+3
+
+
+    // Comparación repetida artificialmente (cubo)
+    private static boolean compararCeldaVariasVeces(int valorCelda, int valorVector, int repeticiones) {
+        for (int k = 0; k < repeticiones; k++) { // bucle extra para complejidad cúbica
+            if (valorCelda != valorVector) {
+                return false;
+            }
+        }
+        return true;
+    } // r(n) = 3n+3
+
+
+2-	Calcular complejidad asintótica
+public static int calcular(int[] arr, int i, int f) {
+        if (i == f) return arr[i];
+        int n = (i + f) / 2;
+        int da = calcular(arr, i, n);
+        int ha = calcular(arr, n + 1, f);
+        return da + ha;
+    }
+
+// método división o sustraccion
+
+
+
+
+
+3-	Calcular complejidad asintótica
+
+public static int sumaCompleja(int[] arr, int inicio, int fin) {
+        if (inicio == fin) return arr[inicio];  
+
+        int medio = (inicio + fin) / 2;
+
+        int sumaIzquierda = sumaCompleja(arr, inicio, medio);    
+        int sumaDerecha   = sumaCompleja(arr, medio + 1, fin);  
+
+        int sumaExtra = 0;
+        for (int i = inicio; i <= fin; i++) {  
+            sumaExtra += arr[i] * 2;            
+        }
+
+        return sumaIzquierda + sumaDerecha + sumaExtra;
+    }
