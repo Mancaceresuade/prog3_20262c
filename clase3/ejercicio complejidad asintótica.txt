@@ -57,9 +57,12 @@ public static int calcular(int[] arr, int i, int f) {
         return da + ha;
     }
 
-// método división o sustraccion
-
-
+// método división
+// a = 2
+// b = 2
+// k = 0
+// caso a > b^k
+// O(n ^ log b (a)  )  => O ( n ^ log 2 (2) ) =>  O(n)
 
 
 
@@ -80,3 +83,16 @@ public static int sumaCompleja(int[] arr, int inicio, int fin) {
 
         return sumaIzquierda + sumaDerecha + sumaExtra;
     }
+
+// método división
+// a = 2
+// b = 2
+// k = 1
+// caso 2
+// O ( n ^k log(n) = >  O( n log(n) )
+
+
+
+
+
+
