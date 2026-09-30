@@ -101,6 +101,7 @@ public class Grafo {
         System.out.println("Recorrido DFS empezando desde el vértice 0:");
 
         // Ejecutar DFS desde el vértice 0
-        g1.DFS(0);
+        // g1.DFS(0);
+        g1.BFS(0);
     }
 }
